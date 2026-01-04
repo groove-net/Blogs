@@ -1,4 +1,10 @@
-{
-  "How I Setup Infrastructure": ["cloud", "infrastructure"],
-  "My Development Setup": ["dev", "cli", "tools"]
-}
+[
+  {
+    "title": "How I Setup Infrastructure",
+    "tags": ["cloud", "infrastructure"]
+  },
+  {
+    "title": "My Development Setup",
+    "tags": ["dev", "cli", "tools"]
+  }
+]

@@ -1,5 +1,6 @@
 > When architecting web applications, I prioritize a consistent, **vendor-agnostic toolset** for my production environments. My primary goal is to minimize reliance on proprietary cloud services; I utilize cloud providers strictly for **VPS compute** to facilitate a self-hosted stack.
-From the database to the networking layer, I traditionally **provision and configure** every component manually to maintain full architectural control. I am currently evolving this process by developing a custom **automation framework** to streamline these deployments while maintaining the same level of granularity. There’s something satisfying about being the cloud myself ☁️.
+> 
+> From the database to the networking layer, I traditionally **provision and configure** every component manually to maintain full architectural control. I am currently evolving this process by developing a custom **automation framework** to streamline these deployments while maintaining the same level of granularity. There’s something satisfying about being the cloud myself ☁️.
 > 
 
 ## 🖥️ [Servers]

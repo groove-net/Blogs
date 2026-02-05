@@ -1,5 +1,3 @@
-# 🛠️ Totally Productive™ Development Setup  
-
 > **Warning**: You are about to venture into my dev setup.  
 > What follows is a dangerously optimized environment, powered by caffeine, duct tape, and command-line sorcery.
 

@@ -10,16 +10,16 @@
   - RAM: 8 GB  
 
 ## 🐧 [Operating System]  
-- **Arch Linux 6.16.9**: Because I like my systems like my code—minimal, fast, and only broken when I say so.  
+- **Arch Linux 6.16.9**: Because I like my systems like my code — minimal, fast, and only sometimes broken.  
 
 ## ✍️ [Text Editor(s)]  
 - **NeoVim**: For when I want to cosplay as a 10x engineer and pretend I know what I’m doing with keybindings.  
-- **VS Code**: For when I realize I *don’t* know what I’m doing and would like pretty colors and friendly buttons, please.  
+- **VS Code**: For when I realize I *don’t* know what I’m doing and would like pretty colors and friendly buttons.  
 
-Basically, I swap between them like someone who can’t decide which Netflix show to commit to but these days I tend to use NeoVim a lot more often.  
+Jokes aside, I've become far more comfortable with Neovim and have been enjoying my time with it so far.  
 
 ## 🐚 [Shell]  
-- **bash**: Old reliable. Not the fastest, not the fanciest, but it works.  
+- **bash**: Old reliable. Not the fastest, nor the fanciest, but it works.  
 
 ## ⚡ [Command Line Tools]  
 An ever-changing collection of command line tools that I find useful on a daily basis or just fun to play with from time to time.

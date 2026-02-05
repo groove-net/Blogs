@@ -1,49 +1,41 @@
-# ☁️ How I Setup Infrastructure
+> When architecting web applications, I prioritize a consistent, **vendor-agnostic toolset** for my production environments. My primary goal is to minimize reliance on proprietary cloud services; I utilize cloud providers strictly for **VPS compute** to facilitate a self-hosted stack.
 
-> Welcome to the kingdom where my apps live, thrive(?), and occasionally catch fire.  
-> This is my **production playground**: a mix of self-hosting, cloud dabbling, and pure chaos engineering.
-> Personally, I don’t like to depend *too much* on cloud tools.  
-> If it can run on bare metal, I’ll probably try it because there’s something deeply satisfying about being the cloud myself ☁️👑.  
+From the database to the networking layer, I traditionally **provision and configure** every component manually to maintain full architectural control. I am currently evolving this process by developing a custom **automation framework** to streamline these deployments while maintaining the same level of granularity. There’s something satisfying about being the cloud myself ☁️.
+> 
 
-## 🖥️ [Servers: DigitalOcean Droplets]  
-- My little droplets in the cloud ☁️.  
-- Think of them as tiny apartments where all my apps crash the couch.  
-- On top of them, I run a **k3s cluster** (because Kubernetes, but diet).  
+## 🖥️ [Servers]
 
-## 🐋 [Containers Everywhere}  
-- All my services get packed into **Docker containers**,  
-  because nothing says “portable” like shipping an app in a box.  
-- Plus, if something explodes, I can just yeet the container and pretend it never happened.  
+The backbone of my infrastructure sits on **DigitalOcean Droplets**. These managed VPS nodes provide the necessary high availability and predictable cost scaling for my current workloads.
 
-## 📬 [Message Broker]  
-- **RabbitMQ**: The mailman of my microservices.  
-  Keeps everything chatting nicely without screaming into the void.  
+## 🐋 [Containers Everywhere}
 
-## 🗄️ [Databases]  
-- **SQL Server**: When I want a cloud-level grown-up database.  
-- **SQLite**: When I just need something local and lightweight,  
-  like a fast-food snack instead of a five-course meal.  
+To manage these nodes, I implement either a **docker swarm** or **k3s cluster**. Practically, a docker swarm cluster suffices for most of my use cases, but occasionally, I run k3s for learning purposes and bettering my comfortability with kubernetes. I chose k3s specifically for its resource efficiency on my cheap low compute servers; it provides a full Kubernetes API without the memory overhead of a standard distribution. Every service is **containerized via Docker**, ensuring that the environment on my local workstation is an exact mirror of what runs in production. This eliminates the "works on my machine" class of deployment failures.
 
-## 🌐 [Proxy]  
-- **NGINX**: My trusty bouncer at the club door.  
-  Decides who gets in, who gets redirected, and who gets thrown out.  
+## 📬 [Message Broker]
 
-## 🤖 [CI/CD]  
-- **GitHub Actions**: Automates my “git push and pray” workflow.  
-  It’s like having a robot intern that actually does its job.  
+To keep these services decoupled, I use **RabbitMQ** as my primary message broker. By moving toward an asynchronous, event-driven model, I ensure that messages and events that do not need to be handled immediately can be throttled, and in the event a spike in traffic occurs within one microservice, it will not lead to a cascading failure across the rest of the stack.
 
-## 📈 [Logging & Monitoring]  
-- **Grafana Loki**: Lets me watch logs flow in like the Matrix code,  
-  except instead of saving the world, I’m just debugging why the API hates me.  
+## 🗄️ [Databases]
 
-## ☁️ [Cloud Adventures (a.k.a. “I Dabbled…”)]  
-Ok so, I lied.. Sometimes I cave and put on my AWS explorer hat and wander into some of their services.  
-Here's a list of a few I've dabbled in:  
-- **SQS**
-- **SNS**
-- **EventBridge**
-- **EC2** 
-- **ECR**
-- **EKS**
-- **ELB**
-- **Terraform** 
+My choice of database is based on the complexity of the expected workload. For high-integrity, relational data, I rely on **Microsoft SQL Server**. However, for lightweight, localized storage or edge-case services, I utilize **SQLite** to keep the architectural footprint small.
+
+## 🌐 [Proxy]
+
+Traffic enters the cluster through a **Caddy** proxy setup. Caddy operates as the primary entry point, handling **load balancing and traffic shaping** while providing fully automated TLS certificate management.
+
+## 🤖 [CI/CD]
+
+My current workflow is fully automated via **GitHub Actions**. Every `git push` triggers a pipeline that handles linting, unit testing, and image builds, pushing the final artifacts to my registry only when they pass all checks.
+
+## 📈 [Logging & Monitoring]
+
+I’ve standardized my logging and observability on **Grafana Loki**. Instead of SSHing into individual nodes to tail logs which was always a hassle, I have a centralized telemetry dashboard. This allows for proactive debugging—identifying performance bottlenecks before they become system-wide outages.
+
+## ☁️ [Cloud-native Adventures]
+
+While my architecture is focused on being provider-independent, I sometimes (rarely enough) leverage **AWS** to augment my infrastructure with managed, highly available services. My experience with the AWS ecosystem focuses on scalable messaging, container orchestration, and Infrastructure as Code (IaC).
+
+- **Compute & Orchestration:** I have experience deploying and managing workloads using **EC2** for raw compute and **EKS (Elastic Kubernetes Service)** for managed orchestration. I utilize **ECR (Elastic Container Registry)** as a secure, private repository for my Docker artifacts with this setup.
+- **Networking & Routing:** To manage traffic and high availability, I implement **ELB (Elastic Load Balancing)** to distribute incoming application requests across healthy targets.
+- **Event-Driven Architecture:** I utilize **SNS**, **SQS**, and **EventBridge** to build resilient, decoupled systems, allowing for seamless communication between distributed microservices.
+- **Provisioning:** To ensure repeatable and documented infrastructure, I use **Terraform** for cloud resource provisioning, treating my environment configurations with the same rigor as my application code.

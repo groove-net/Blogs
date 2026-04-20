@@ -6,5 +6,9 @@
   {
     "title": "My Development Setup",
     "tags": ["dev", "cli", "tools"]
+  },
+  {
+    "title": "Authentication & Authorization",
+    "tags": ["auth", "jwt", "session", "tokens", "IdP", "rbac", "permissions"]
   }
 ]

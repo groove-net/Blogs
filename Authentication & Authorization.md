@@ -353,7 +353,7 @@ The output is three Base64-URL strings separated by dots that can be easily pass
 
 The following shows a JWT that has the previous header and payload encoded, and it is signed with a secret.
 
-[Encoded JWT](https://www.jwt.io/_next/image?url=https%3A%2F%2Fcdn.auth0.com%2Fcontent%2Fjwt%2Fencoded-jwt3.png&w=3840&q=75)
+![Encoded JWT](https://www.jwt.io/_next/image?url=https%3A%2F%2Fcdn.auth0.com%2Fcontent%2Fjwt%2Fencoded-jwt3.png&w=3840&q=75)
 
 If you want to play with JWT and put these concepts into practice, you can use [**jwt.io Debugger**](https://www.jwt.io/) to decode, verify, and generate JWTs.
 

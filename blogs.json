@@ -9,6 +9,6 @@
   },
   {
     "title": "Authentication & Authorization",
-    "tags": ["auth", "jwt", "session", "tokens", "IdP", "rbac", "permissions"]
+    "tags": ["auth", "jwt", "session", "tokens"]
   }
 ]

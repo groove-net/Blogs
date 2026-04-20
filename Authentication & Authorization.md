@@ -39,7 +39,7 @@ Now, every time a user makes a sensitive request to the main server, the client 
 
 Once the server verifies a user's credentials, it creates a record in its own memory (or database) containing the login event and a randomly generated `sessionId`. 
 
-![image.png](attachment:703175d4-6c71-4fe6-974d-4ae98a310b88:image.png)
+![image.png](https://raw.githubusercontent.com/groove-net/Blogs/refs/heads/main/image.png)
 
 The `sessionId` is just a unique identifier for your login session. The server then sends this unique `sessionId` back to the client. The client stores this ID and attaches it as a "ticket" to every subsequent request. Because the server keeps track of the session, your username and password are no longer required to uniquely identify you after the initial login meaning. The server simply recognizes the user by mapping the session ID to the actual session data (such as user info, roles, or a shopping cart) that lives securely on the server.
 
